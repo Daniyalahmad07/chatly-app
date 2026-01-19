@@ -13,7 +13,10 @@ const port=process.env.PORT || 5000
 
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: [
+    "http://localhost:5173",
+    "https://chatly-app.onrender.com"
+  ],
     credentials:true
 }))
 app.use(express.json())
@@ -23,8 +26,8 @@ app.use("/api/user",userRouter)
 app.use("/api/message",messageRouter)
 
 
-
+connectDb()
 server.listen(port,()=>{
-    connectDb()
+    
     console.log("server started")
 })
